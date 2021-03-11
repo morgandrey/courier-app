@@ -2,6 +2,7 @@ package com.example.courierapp.remote
 
 import com.example.courierapp.models.Courier
 import io.reactivex.Observable
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -15,5 +16,5 @@ interface AuthService {
     fun registerCourier(@Body courier: Courier): Observable<Boolean>
 
     @POST("api/couriers/login")
-    fun loginCourier(@Body courier: Courier): Observable<Courier>
+    fun loginCourier(@Body courier: Courier): Observable<Response<Courier>>
 }

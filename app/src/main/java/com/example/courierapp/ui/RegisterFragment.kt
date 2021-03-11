@@ -45,7 +45,7 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
             if (!checkEmptyFields()) {
                 Toast.makeText(
                     requireContext(),
-                    R.string.registration_fill_in_all_fields,
+                    R.string.fill_in_all_fields,
                     Toast.LENGTH_SHORT
                 ).show()
             } else if (binding.registerPasswordEditText.text.toString() !=
