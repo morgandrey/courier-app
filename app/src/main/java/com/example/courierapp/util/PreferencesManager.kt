@@ -42,8 +42,8 @@ class PreferencesManager(context: Context) {
         getEditor().putString(PREF_COURIER, json).apply()
     }
 
-    fun getCourier(): Courier {
+    fun getCourier(): Courier? {
         val gson = Gson()
-        return gson.fromJson(preferences!!.getString(PREF_COURIER, ""), Courier::class.java)
+        return gson.fromJson(preferences!!.getString(PREF_COURIER, null), Courier::class.java)
     }
 }

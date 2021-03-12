@@ -24,4 +24,9 @@
     <style name="SplashScreen" parent="Theme.CourierApp">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
+
+    <style name="NavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextColor">@color/white</item>
+    </style>
+
 </resources>

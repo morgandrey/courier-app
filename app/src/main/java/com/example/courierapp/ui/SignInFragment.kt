@@ -49,11 +49,8 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         val watcher: FormatWatcher = MaskFormatWatcher(mask)
         watcher.installOn(binding.courierPhoneEditText)
 
-
-
         binding.singUpTextView.setOnClickListener {
             hideKeyboard()
-            //Navigation.createNavigateOnClickListener(R.id.action_signInFragment_to_registerFragment)
             it.findNavController().navigate(R.id.action_signInFragment_to_registerFragment)
         }
         binding.forgotPasswordTextView.setOnClickListener {
@@ -80,10 +77,6 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         hideKeyboard()
         requireView().findNavController()
             .navigate(R.id.action_signInFragment_to_pinLockFragment)
-    }
-
-    override fun onCourierAlreadyLoggedIn(courier: Courier) {
-        TODO("Not yet implemented")
     }
 
     override fun showError(message: String) {

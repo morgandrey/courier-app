@@ -14,7 +14,6 @@ import moxy.viewstate.strategy.alias.OneExecution
 interface SignInView : MvpView {
     @OneExecution
     fun onSuccessSignIn(courier: Courier)
-    fun onCourierAlreadyLoggedIn(courier: Courier)
     fun showError(message: String)
     fun showError(message: Int)
 }
