@@ -40,7 +40,7 @@ class SignInPresenter : MvpPresenter<SignInView>() {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())
                         } else {
-                            viewState.showError(R.string.registration_error)
+                            viewState.showError(R.string.sign_in_error)
                         }
                     }
                 )

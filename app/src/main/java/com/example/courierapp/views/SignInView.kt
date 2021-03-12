@@ -3,6 +3,7 @@ package com.example.courierapp.views
 import com.example.courierapp.models.Courier
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
+import moxy.viewstate.strategy.alias.OneExecution
 
 
 /**
@@ -11,7 +12,9 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
 interface SignInView : MvpView {
+    @OneExecution
     fun onSuccessSignIn(courier: Courier)
+    fun onCourierAlreadyLoggedIn(courier: Courier)
     fun showError(message: String)
     fun showError(message: Int)
 }

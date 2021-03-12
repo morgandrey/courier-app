@@ -23,5 +23,12 @@
     <string name="sign_in_button">Sign in</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="do_not_have_an_account">Don\'t have an account?</string>
+    <string name="sign_in_error">Sing in error</string>
     <string name="sign_in_incorrect_password_or_login">Incorrect login or password</string>
+
+    <!-- Pin Code -->
+    <string name="pin_codes_do_not_match">Pin codes don\'t match</string>
+    <string name="enter_the_pin_code_again">Enter the pin code again</string>
+    <string name="pin_code_name_title">%s %s</string>
+    <string name="wrong_pin_code">Wrong pin code</string>
 </resources>

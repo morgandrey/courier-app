@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentSignInBinding
 import com.example.courierapp.models.Courier
 import com.example.courierapp.presentation.SignInPresenter
+import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.hideKeyboard
+import com.example.courierapp.util.showToast
 import com.example.courierapp.views.SignInView
+import com.google.gson.Gson
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.tinkoff.decoro.MaskImpl
@@ -29,6 +34,7 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
 
     private val presenter: SignInPresenter by moxyPresenter { SignInPresenter() }
     private val binding: FragmentSignInBinding by viewBinding()
+    private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +48,12 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
         val watcher: FormatWatcher = MaskFormatWatcher(mask)
         watcher.installOn(binding.courierPhoneEditText)
+
+
+
         binding.singUpTextView.setOnClickListener {
             hideKeyboard()
+            //Navigation.createNavigateOnClickListener(R.id.action_signInFragment_to_registerFragment)
             it.findNavController().navigate(R.id.action_signInFragment_to_registerFragment)
         }
         binding.forgotPasswordTextView.setOnClickListener {
@@ -51,11 +61,7 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         }
         binding.signInButton.setOnClickListener {
             if (!checkEmptyFields()) {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.fill_in_all_fields,
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(requireContext(), R.string.fill_in_all_fields)
             } else {
                 presenter.signInCourier(
                     Courier(
@@ -68,15 +74,24 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
     }
 
     override fun onSuccessSignIn(courier: Courier) {
+        preferencesManager = PreferencesManager(requireContext())
+        preferencesManager.setCourier(courier)
 
+        hideKeyboard()
+        requireView().findNavController()
+            .navigate(R.id.action_signInFragment_to_pinLockFragment)
+    }
+
+    override fun onCourierAlreadyLoggedIn(courier: Courier) {
+        TODO("Not yet implemented")
     }
 
     override fun showError(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        showToast(requireContext(), message)
     }
 
     override fun showError(message: Int) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        showToast(requireContext(), message)
     }
 
     private fun checkEmptyFields(): Boolean {

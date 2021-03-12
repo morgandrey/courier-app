@@ -11,6 +11,7 @@ import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentRegisterBinding
 import com.example.courierapp.models.Courier
 import com.example.courierapp.presentation.RegisterPresenter
+import com.example.courierapp.util.showToast
 import com.example.courierapp.views.RegisterView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -41,21 +42,14 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
         val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
         val watcher: FormatWatcher = MaskFormatWatcher(mask)
         watcher.installOn(binding.registerPhoneEditText)
+
         binding.registrationButton.setOnClickListener {
             if (!checkEmptyFields()) {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.fill_in_all_fields,
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(requireContext(), R.string.fill_in_all_fields)
             } else if (binding.registerPasswordEditText.text.toString() !=
                 binding.registerConfirmPasswordEditText.text.toString()
             ) {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.registration_passwords_mismatch,
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(requireContext(), R.string.registration_passwords_mismatch)
             } else {
                 presenter.signUpCourier(
                     Courier(
@@ -72,26 +66,19 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
     override fun onSuccessSignUp(isSignUp: Boolean) {
         when (isSignUp) {
             true -> {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.registration_success, Toast.LENGTH_SHORT
-                ).show()
+                showToast(requireContext(), R.string.registration_success)
                 requireView().findNavController().popBackStack()
             }
-            false -> Toast.makeText(
-                requireContext(),
-                R.string.registration_user_exists,
-                Toast.LENGTH_SHORT
-            ).show()
+            false -> showToast(requireContext(), R.string.registration_user_exists)
         }
     }
 
     override fun showError(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        showToast(requireContext(), message)
     }
 
     override fun showError(message: Int) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        showToast(requireContext(), message)
     }
 
     private fun checkEmptyFields(): Boolean {
