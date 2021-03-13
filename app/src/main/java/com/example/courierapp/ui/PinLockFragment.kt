@@ -73,7 +73,7 @@ class PinLockFragment : MvpAppCompatFragment(R.layout.fragment_pin_lock), PinLoc
         override fun onComplete(pin: String) {
             if (pin == courierPinCode) {
                 requireView().findNavController()
-                    .navigate(R.id.action_pinLockFragment_to_profileFragment)
+                    .navigate(R.id.action_pinLockFragment_to_activeOrdersFragment)
             } else {
                 showToast(requireContext(), getString(R.string.wrong_pin_code))
                 binding.pinCode.resetPinLockView()
@@ -98,10 +98,9 @@ class PinLockFragment : MvpAppCompatFragment(R.layout.fragment_pin_lock), PinLoc
                 } else {
                     preferencesManager.setPin(pinCodeOne)
                     requireView().findNavController()
-                        .navigate(R.id.action_pinLockFragment_to_profileFragment)
+                        .navigate(R.id.action_pinLockFragment_to_activeOrdersFragment)
                 }
             }
-
         }
 
         override fun onEmpty() {}

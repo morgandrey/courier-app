@@ -17,10 +17,7 @@ import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentProfileBinding
 import com.example.courierapp.models.Courier
 import com.example.courierapp.presentation.ProfilePresenter
-import com.example.courierapp.util.GALLERY_REQUEST
-import com.example.courierapp.util.PreferencesManager
-import com.example.courierapp.util.hideApp
-import com.example.courierapp.util.showToast
+import com.example.courierapp.util.*
 import com.example.courierapp.views.ProfileView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -41,6 +38,7 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
     private val binding: FragmentProfileBinding by viewBinding()
     private lateinit var courier: Courier
     private lateinit var preferencesManager: PreferencesManager
+    private lateinit var loadingDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +49,7 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hideApp(requireActivity(), viewLifecycleOwner)
-
+        loadingDialog = loadingSpotsDialog(requireContext())
         preferencesManager = PreferencesManager(requireContext())
         courier = preferencesManager.getCourier()!!
         presenter.getCourier(courier.CourierId)
@@ -134,6 +131,13 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
         binding.profileMoneyTextView.setText(courier.CourierMoney.toString())
 
         preferencesManager.setCourier(courier)
+    }
+
+    override fun switchLoading(show: Boolean) {
+        when (show) {
+            true -> loadingDialog.show()
+            false -> loadingDialog.dismiss()
+        }
     }
 
     private fun changedCourierData(): Courier {

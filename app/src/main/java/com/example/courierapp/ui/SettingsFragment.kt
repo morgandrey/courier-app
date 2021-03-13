@@ -29,9 +29,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
 //            }
 //        sp.registerOnSharedPreferenceChangeListener(listener)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        hideApp(requireActivity(), viewLifecycleOwner)
-    }
 }

@@ -37,31 +37,63 @@
         android:label="Pin code"
         tools:layout="@layout/fragment_pin_lock">
         <action
-            android:id="@+id/action_pinLockFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
+            android:id="@+id/action_pinLockFragment_to_activeOrdersFragment"
+            app:destination="@id/activeOrdersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.courierapp.ui.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.courierapp.ui.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/historyFragment"
-        android:name="com.example.courierapp.ui.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:id="@+id/settingsFragment"
+        android:name="com.example.courierapp.ui.SettingsFragment"
+        android:label="Settings" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.courierapp.ui.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:id="@+id/activeOrdersFragment"
+        android:name="com.example.courierapp.ui.ActiveOrdersFragment"
+        android:label="Active"
+        tools:layout="@layout/fragment_active_orders" />
+    <fragment
+        android:id="@+id/availableOrdersFragment"
+        android:name="com.example.courierapp.ui.AvailableOrdersFragment"
+        android:label="Available"
+        tools:layout="@layout/fragment_available_orders" />
+    <fragment
+        android:id="@+id/additionalFragment"
+        android:name="com.example.courierapp.ui.AdditionalFragment"
+        android:label="More"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_additional" >
         <action
+            android:id="@+id/action_additionalFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_profileFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_additionalFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.courierapp.ui.SettingsFragment"
-        android:label="SettingsFragment" />
 </navigation>

@@ -35,9 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.profileFragment,
+                R.id.additionalFragment,
                 R.id.historyFragment,
-                R.id.settingsFragment,
+                R.id.availableOrdersFragment,
+                R.id.activeOrdersFragment,
                 R.id.pinLockFragment,
                 R.id.signInFragment
             )
@@ -51,7 +52,9 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.pinLockFragment ||
                 destination.id == R.id.signInFragment ||
-                destination.id == R.id.registerFragment
+                destination.id == R.id.registerFragment ||
+                destination.id == R.id.settingsFragment ||
+                destination.id == R.id.profileFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
@@ -71,16 +74,20 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_profile -> {
-                    navController.navigate(R.id.profileFragment)
+                R.id.navigation_additional -> {
+                    navController.navigate(R.id.additionalFragment)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigation_history -> {
+                R.id.navigation_history_orders -> {
                     navController.navigate(R.id.historyFragment)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigation_settings -> {
-                    navController.navigate(R.id.settingsFragment)
+                R.id.navigation_available_orders -> {
+                    navController.navigate(R.id.availableOrdersFragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_active_orders -> {
+                    navController.navigate(R.id.activeOrdersFragment)
                     return@OnNavigationItemSelectedListener true
                 }
             }

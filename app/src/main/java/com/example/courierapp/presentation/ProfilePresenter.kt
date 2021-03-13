@@ -42,14 +42,19 @@ class ProfilePresenter : MvpPresenter<ProfileView>() {
     }
 
     fun getCourier(courierId: Long) {
+        viewState.switchLoading(true)
         profileService = NetworkService.profileService
         compositeDisposable.add(
             profileService.getCourier(courierId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { courier -> viewState.onSuccessGetCourier(courier) },
+                    { courier ->
+                        viewState.switchLoading(false)
+                        viewState.onSuccessGetCourier(courier)
+                    },
                     { error ->
+                        viewState.switchLoading(false)
                         if (error is HttpException) {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())

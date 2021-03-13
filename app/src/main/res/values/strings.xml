@@ -41,6 +41,12 @@
     <!-- Loading -->
     <string name="loading">Loading…</string>
 
+    <!-- Order -->
+    <string name="order_item_id">Order № %s</string>
+    <string name="order_details">Order details № %s</string>
+    <string name="courier_reward_text">Reward: %s</string>
+    <string name="rating_text">Rating: %s</string>
+
     <string name="dialog_confirmation_title">The confirmation</string>
     <string name="dialog_logout_message">Are you sure you want to reset the access PIN code and log in with your phone number?</string>
     <string name="dialog_cancel">Cancel</string>
