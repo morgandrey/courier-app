@@ -2,6 +2,7 @@ package com.example.courierapp.views
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
+import moxy.viewstate.strategy.alias.OneExecution
 
 
 /**
@@ -10,7 +11,9 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
 interface RegisterView : MvpView {
+    @OneExecution
     fun onSuccessSignUp(isSignUp: Boolean)
+    fun switchLoading(show: Boolean)
     fun showError(message: String)
     fun showError(message: Int)
 }

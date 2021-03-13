@@ -1,17 +1,11 @@
 package com.example.courierapp.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentSignInBinding
@@ -19,9 +13,9 @@ import com.example.courierapp.models.Courier
 import com.example.courierapp.presentation.SignInPresenter
 import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.hideKeyboard
+import com.example.courierapp.util.loadingSpotsDialog
 import com.example.courierapp.util.showToast
 import com.example.courierapp.views.SignInView
-import com.google.gson.Gson
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.tinkoff.decoro.MaskImpl
@@ -38,6 +32,7 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
 
     private val presenter: SignInPresenter by moxyPresenter { SignInPresenter() }
     private val binding: FragmentSignInBinding by viewBinding()
+    private lateinit var loadingAlert: AlertDialog
     private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
@@ -52,24 +47,27 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
         val watcher: FormatWatcher = MaskFormatWatcher(mask)
         watcher.installOn(binding.courierPhoneEditText)
+        loadingAlert = loadingSpotsDialog(requireContext())
 
-        binding.singUpTextView.setOnClickListener {
-            hideKeyboard()
-            it.findNavController().navigate(R.id.action_signInFragment_to_registerFragment)
-        }
-        binding.forgotPasswordTextView.setOnClickListener {
-            //TODO Make forgot password fragment
-        }
-        binding.signInButton.setOnClickListener {
-            if (!checkEmptyFields()) {
-                showToast(requireContext(), R.string.fill_in_all_fields)
-            } else {
-                presenter.signInCourier(
-                    Courier(
-                        CourierPhone = binding.courierPhoneEditText.text.toString(),
-                        CourierPassword = binding.courierPasswordEditText.text.toString()
+        with(binding) {
+            singUpTextView.setOnClickListener {
+                hideKeyboard()
+                it.findNavController().navigate(R.id.action_signInFragment_to_registerFragment)
+            }
+            forgotPasswordTextView.setOnClickListener {
+                //TODO Make forgot password fragment
+            }
+            signInButton.setOnClickListener {
+                if (!checkEmptyFields()) {
+                    showToast(requireContext(), R.string.fill_in_all_fields)
+                } else {
+                    presenter.signInCourier(
+                        Courier(
+                            CourierPhone = binding.courierPhoneEditText.text.toString(),
+                            CourierPassword = binding.courierPasswordEditText.text.toString()
+                        )
                     )
-                )
+                }
             }
         }
     }
@@ -81,6 +79,13 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
         hideKeyboard()
         requireView().findNavController()
             .navigate(R.id.action_signInFragment_to_pinLockFragment)
+    }
+
+    override fun switchLoading(show: Boolean) {
+        when (show) {
+            true -> loadingAlert.show()
+            false -> loadingAlert.dismiss()
+        }
     }
 
     override fun showError(message: String) {

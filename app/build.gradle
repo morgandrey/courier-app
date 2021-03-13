@@ -84,6 +84,9 @@ dependencies {
     implementation 'com.github.moxy-community:moxy-android:2.2.1'
     kapt 'com.github.moxy-community:moxy-compiler:2.2.1'
 
+    // Loading Dialog
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
 

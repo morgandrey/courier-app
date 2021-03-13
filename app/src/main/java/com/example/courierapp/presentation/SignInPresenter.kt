@@ -22,6 +22,7 @@ class SignInPresenter : MvpPresenter<SignInView>() {
     private lateinit var authService: AuthService
 
     fun signInCourier(courier: Courier) {
+        viewState.switchLoading(true)
         authService = NetworkService.authService
         compositeDisposable.add(
             authService.loginCourier(courier)
@@ -29,6 +30,7 @@ class SignInPresenter : MvpPresenter<SignInView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { response ->
+                        viewState.switchLoading(false)
                         if (response.code() == 204) {
                             viewState.showError(R.string.sign_in_incorrect_password_or_login)
                         } else {
@@ -36,6 +38,7 @@ class SignInPresenter : MvpPresenter<SignInView>() {
                         }
                     },
                     { error ->
+                        viewState.switchLoading(false)
                         if (error is HttpException) {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())

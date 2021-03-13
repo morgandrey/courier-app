@@ -1,5 +1,6 @@
 package com.example.courierapp.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentRegisterBinding
 import com.example.courierapp.models.Courier
 import com.example.courierapp.presentation.RegisterPresenter
+import com.example.courierapp.util.loadingSpotsDialog
 import com.example.courierapp.util.showToast
 import com.example.courierapp.views.RegisterView
 import moxy.MvpAppCompatFragment
@@ -30,6 +32,7 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
 
     private val presenter: RegisterPresenter by moxyPresenter { RegisterPresenter() }
     private val binding: FragmentRegisterBinding by viewBinding()
+    private lateinit var loadingDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,7 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
         val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
         val watcher: FormatWatcher = MaskFormatWatcher(mask)
         watcher.installOn(binding.registerPhoneEditText)
+        loadingDialog = loadingSpotsDialog(requireContext())
 
         binding.registrationButton.setOnClickListener {
             if (!checkEmptyFields()) {
@@ -71,6 +75,13 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
                 requireView().findNavController().popBackStack()
             }
             false -> showToast(requireContext(), R.string.registration_user_exists)
+        }
+    }
+
+    override fun switchLoading(show: Boolean) {
+        when (show) {
+            true -> loadingDialog.show()
+            false -> loadingDialog.dismiss()
         }
     }
 

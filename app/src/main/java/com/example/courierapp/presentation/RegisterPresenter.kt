@@ -22,14 +22,19 @@ class RegisterPresenter : MvpPresenter<RegisterView>() {
     private lateinit var authService: AuthService
 
     fun signUpCourier(courier: Courier) {
+        viewState.switchLoading(true)
         authService = NetworkService.authService
         compositeDisposable.add(
             authService.registerCourier(courier)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { viewState.onSuccessSignUp(it) },
+                    {
+                        viewState.switchLoading(false)
+                        viewState.onSuccessSignUp(it)
+                    },
                     { error ->
+                        viewState.switchLoading(false)
                         if (error is HttpException) {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())

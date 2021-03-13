@@ -38,6 +38,9 @@
     <string name="english_language">English</string>
     <string name="title_general_settings">General</string>
 
+    <!-- Loading -->
+    <string name="loading">Loading…</string>
+
     <string name="dialog_confirmation_title">The confirmation</string>
     <string name="dialog_logout_message">Are you sure you want to reset the access PIN code and log in with your phone number?</string>
     <string name="dialog_cancel">Cancel</string>

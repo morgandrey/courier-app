@@ -1,6 +1,7 @@
 package com.example.courierapp.util
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -10,8 +11,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.example.courierapp.R
+import dmax.dialog.SpotsDialog
 
 
 /**
@@ -46,4 +48,12 @@ fun hideApp(activity: FragmentActivity, viewLifecycleOwner: LifecycleOwner) {
                 startActivity(activity, intent, null)
             }
         })
+}
+
+fun loadingSpotsDialog(context: Context) : AlertDialog {
+    return SpotsDialog.Builder()
+        .setContext(context)
+        .setTheme(R.style.LoadingDialog)
+        .setMessage(R.string.loading)
+        .build()
 }
