@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentSignInBinding
@@ -90,5 +94,10 @@ class SignInFragment : MvpAppCompatFragment(R.layout.fragment_sign_in), SignInVi
     private fun checkEmptyFields(): Boolean {
         return binding.courierPhoneEditText.text!!.isNotBlank() &&
                 binding.courierPasswordEditText.text!!.isNotBlank()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
     }
 }

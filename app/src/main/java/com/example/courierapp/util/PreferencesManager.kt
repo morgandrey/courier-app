@@ -46,4 +46,9 @@ class PreferencesManager(context: Context) {
         val gson = Gson()
         return gson.fromJson(preferences!!.getString(PREF_COURIER, null), Courier::class.java)
     }
+
+    fun deleteAllPreferences() {
+        getEditor().remove(PREF_PIN).apply()
+        getEditor().remove(PREF_COURIER).apply()
+    }
 }

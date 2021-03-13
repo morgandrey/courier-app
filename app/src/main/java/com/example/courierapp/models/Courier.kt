@@ -18,8 +18,10 @@ data class Courier(
     var CourierImage: String? = null,
     @SerializedName("courierPhone")
     var CourierPhone: String = "",
-    var CourierPassword: String? = null,
-    var CourierSalt: String? = null,
+    @SerializedName("courierPassword")
+    var CourierPassword: String = "",
+    @SerializedName("courierSalt")
+    var CourierSalt: String = "",
     @SerializedName("courierRating")
     var CourierRating: Long = 0,
     @SerializedName("courierMoney")

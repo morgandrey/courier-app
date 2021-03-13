@@ -32,19 +32,20 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_SELECTED
         binding.bottomNav.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         setSupportActionBar(binding.toolbar)
-        if (isCourierLoggedIn()) {
-            val appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.profileFragment,
-                    R.id.historyFragment,
-                    R.id.pinLockFragment
-                )
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.profileFragment,
+                R.id.historyFragment,
+                R.id.settingsFragment,
+                R.id.pinLockFragment,
+                R.id.signInFragment
             )
-            binding.bottomNav.menu.getItem(1).isChecked = true
-            setupActionBarWithNavController(navController, appBarConfiguration)
+        )
+        binding.bottomNav.menu.getItem(1).isChecked = true
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        if (isCourierLoggedIn()) {
             navController.navigate(R.id.pinLockFragment)
-        } else {
-            setupActionBarWithNavController(navController)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -76,6 +77,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_history -> {
                     navController.navigate(R.id.historyFragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_settings -> {
+                    navController.navigate(R.id.settingsFragment)
                     return@OnNavigationItemSelectedListener true
                 }
             }

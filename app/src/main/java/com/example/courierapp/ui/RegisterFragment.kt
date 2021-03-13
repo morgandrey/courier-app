@@ -89,4 +89,9 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
                 binding.registerPasswordEditText.text!!.isNotBlank() &&
                 binding.registerConfirmPasswordEditText.text!!.isNotBlank()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
 }
