@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.registerFragment ||
                 destination.id == R.id.settingsFragment ||
                 destination.id == R.id.profileFragment ||
-                destination.id == R.id.availableOrderDetailsFragment
+                destination.id == R.id.availableOrderDetailsFragment ||
+                destination.id == R.id.activeOrderDetailsFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {

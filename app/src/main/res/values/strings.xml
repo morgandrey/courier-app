@@ -31,7 +31,7 @@
     <!-- Pin Code -->
     <string name="pin_codes_do_not_match">Pin codes don\'t match</string>
     <string name="enter_the_pin_code_again">Enter the pin code again</string>
-    <string name="pin_code_name_title">%s %s</string>
+    <string name="pin_code_name_title" translatable="false">%s %s</string>
     <string name="wrong_pin_code">Wrong pin code</string>
 
     <!-- Settings -->
@@ -50,7 +50,7 @@
     <string name="loading_orders_error">Loading orders error</string>
 
     <!-- Order details -->
-    <string name="order_details_title">Order details №%s</string>
+    <string name="order_details_title">Order details № %s</string>
     <string name="order_details_client_text">Client: %s %s</string>
     <string name="order_details_products_text">Products:</string>
     <string name="order_details_address_text">Address: %s</string>
@@ -62,5 +62,12 @@
     <string name="dialog_logout_message">Are you sure you want to reset the access PIN code and log in with your phone number?</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_ok" translatable="false">OK</string>
+
+    <!-- Active orders -->
+    <string name="complete_order_button_text">Complete</string>
+    <string name="cancel_order_button_text">Cancel</string>
+
+    <string name="complete_order_error">Complete order error</string>
+    <string name="complete_order_success">You are complete the order!</string>
 
 </resources>

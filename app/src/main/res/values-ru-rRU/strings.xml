@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CourierApp</string>
+    <string name="sign_up_text"><u>Зарегистрироваться</u></string>
+    <string name="fill_in_all_fields">Заполните все поля!</string>
+    <string name="registration_error">Ошибка регистрации</string>
+    <string name="registration_user_exists">Этот пользователь уже существует</string>
+    <string name="registration_success">Пользователь успешно зарегистрирован</string>
+    <string name="registration_passwords_mismatch">Пароли не совпадают!</string>
+    <string name="registration_sign_up_button">Зарегистрироваться</string>
+    <string name="surname">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтверждение пароля</string>
+    <string name="name">Имя</string>
+    <string name="profile_update_error">Ошибка обновления профиля</string>
+    <string name="profile_get_courier_error">Ошибка получения пользователя</string>
+    <string name="sign_in_button">Войти</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="do_not_have_an_account">"Нет аккаунта ? "</string>
+    <string name="sign_in_error">Ошибка входа</string>
+    <string name="sign_in_incorrect_password_or_login">Неправильный телефон или пароль</string>
+    <string name="pin_codes_do_not_match">Пин коды не совпадают</string>
+    <string name="enter_the_pin_code_again">Введите пин код снова</string>
+    <string name="wrong_pin_code">Неверный пин код</string>
+    <string name="language_title">Язык</string>
+    <string name="russian_language">Русский</string>
+    <string name="english_language">Английский</string>
+    <string name="title_general_settings">Общие</string>
+    <string name="loading">Загрузка…</string>
+    <string name="order_item_id">Заказ № %s</string>
+    <string name="courier_reward_text">Награда: %s</string>
+    <string name="rating_text">Рейтинг: %s</string>
+    <string name="loading_orders_error">Ошибка загрузки заказов</string>
+    <string name="order_details_title">Детали заказа № %s</string>
+    <string name="order_details_client_text">Клиент: %s %s</string>
+    <string name="order_details_products_text">"Продукты: "</string>
+    <string name="order_details_address_text">Адрес: %s</string>
+    <string name="order_details_take_order_button_text">Принять заказ</string>
+    <string name="order_details_description_text">Комментарий к заказу:</string>
+    <string name="dialog_confirmation_title">Подтверждение</string>
+    <string name="dialog_logout_message">Вы уверены, что хотите выйти?</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="complete_order_button_text">Завершить</string>
+    <string name="cancel_order_button_text">Отказаться</string>
+</resources>

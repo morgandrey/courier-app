@@ -8,14 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.R
 import com.example.courierapp.adapters.OrderAdapter
-import com.example.courierapp.databinding.FragmentAvailableOrderListBinding
-import com.example.courierapp.models.Courier
+import com.example.courierapp.databinding.FragmentActiveOrderListBinding
 import com.example.courierapp.models.Order
-import com.example.courierapp.presentation.AvailableOrderListPresenter
+import com.example.courierapp.presentation.ActiveOrderListPresenter
 import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.hideApp
 import com.example.courierapp.util.showToast
-import com.example.courierapp.views.AvailableOrderListView
+import com.example.courierapp.views.ActiveOrderListView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -24,42 +23,42 @@ import moxy.ktx.moxyPresenter
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_available_order_list), AvailableOrderListView {
+class ActiveOrderListFragment : MvpAppCompatFragment(R.layout.fragment_active_order_list), ActiveOrderListView {
 
-    private val presenter: AvailableOrderListPresenter by moxyPresenter { AvailableOrderListPresenter() }
-    private val binding: FragmentAvailableOrderListBinding by viewBinding()
+    private val presenter: ActiveOrderListPresenter by moxyPresenter { ActiveOrderListPresenter() }
+    private val binding: FragmentActiveOrderListBinding by viewBinding()
     private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_available_order_list, container, false)
+        return inflater.inflate(R.layout.fragment_active_order_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideApp(requireActivity(), viewLifecycleOwner)
         preferencesManager = PreferencesManager(requireContext())
-        presenter.getAvailableOrders(preferencesManager.getCourier()!!.CourierId)
-    }
-
-    override fun onSuccessGetAvailableOrders(orderList: List<Order>) {
-        binding.orderRecyclerView.layoutManager = LinearLayoutManager(activity)
-        binding.orderRecyclerView.adapter = OrderAdapter(orderList, false)
+        presenter.getActiveOrders(preferencesManager.getCourier()!!.CourierId)
     }
 
     override fun switchLoading(show: Boolean) {
         when (show) {
             true -> {
-                binding.orderProgressBar.visibility = View.VISIBLE
-                binding.orderRecyclerView.visibility = View.GONE
+                binding.activeOrdersProgressBar.visibility = View.VISIBLE
+                binding.activeOrdersRecyclerView.visibility = View.GONE
             }
             false -> {
-                binding.orderProgressBar.visibility = View.GONE
-                binding.orderRecyclerView.visibility = View.VISIBLE
+                binding.activeOrdersProgressBar.visibility = View.GONE
+                binding.activeOrdersRecyclerView.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun onSuccessGetActiveOrders(orderList: List<Order>) {
+        binding.activeOrdersRecyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.activeOrdersRecyclerView.adapter = OrderAdapter(orderList, true)
     }
 
     override fun showError(message: String) {

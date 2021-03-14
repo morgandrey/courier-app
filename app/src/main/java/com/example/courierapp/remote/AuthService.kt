@@ -14,7 +14,6 @@ import retrofit2.http.POST
 interface AuthService {
     @POST("api/couriers/register")
     fun registerCourier(@Body courier: Courier): Observable<Boolean>
-
     @POST("api/couriers/login")
     fun loginCourier(@Body courier: Courier): Observable<Response<Courier>>
 }

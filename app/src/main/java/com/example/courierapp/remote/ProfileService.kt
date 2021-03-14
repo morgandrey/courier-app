@@ -16,7 +16,6 @@ import retrofit2.http.Path
 interface ProfileService {
     @PUT("api/couriers/{id}")
     fun updateCourierProfile(@Path("id") id: Long, @Body user: Courier): Observable<Response<Unit>>
-
     @GET("api/couriers/{id}")
     fun getCourier(@Path("id") courierId: Long): Observable<Courier>
 }

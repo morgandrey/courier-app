@@ -2,7 +2,6 @@ package com.example.courierapp.adapters
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import com.google.gson.Gson
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class OrderAdapter(private var dataSet: List<Order>) :
+class OrderAdapter(private var dataSet: List<Order>, private val active: Boolean) :
     RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,7 +31,7 @@ class OrderAdapter(private var dataSet: List<Order>) :
         private val locationButton: ImageButton =
             itemView.findViewById(R.id.find_order_location_button)
 
-        fun bind(item: Order) {
+        fun bind(item: Order, active: Boolean) {
             orderId.text =
                 itemView.resources.getString(R.string.order_item_id, item.OrderId.toString())
             orderAddress.text = item.DeliveryAddress
@@ -43,16 +42,25 @@ class OrderAdapter(private var dataSet: List<Order>) :
                     R.string.courier_reward_text,
                     item.CourierReward.toString()
                 )
-            itemView.setOnClickListener { view ->
-                val gson = Gson()
-                val orderJson = gson.toJson(item)
-                val bundle = bundleOf("order" to orderJson)
-                view.findNavController().navigate(
-                    R.id.action_availableOrderListFragment_to_availableOrderDetailsFragment,
-                    bundle
-                )
-            }
 
+            val gson = Gson()
+            val orderJson = gson.toJson(item)
+            val bundle = bundleOf("order" to orderJson)
+            if (active) {
+                itemView.setOnClickListener { view ->
+                    view.findNavController().navigate(
+                        R.id.action_activeOrderListFragment_to_activeOrderDetailsFragment,
+                        bundle
+                    )
+                }
+            } else {
+                itemView.setOnClickListener { view ->
+                    view.findNavController().navigate(
+                        R.id.action_availableOrderListFragment_to_availableOrderDetailsFragment,
+                        bundle
+                    )
+                }
+            }
             locationButton.setOnClickListener {
                 val gmmIntentUri = Uri.parse("geo:0,0?q=${item.DeliveryAddress}, Москва")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
@@ -78,7 +86,7 @@ class OrderAdapter(private var dataSet: List<Order>) :
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = dataSet[position]
-        viewHolder.bind(item)
+        viewHolder.bind(item, active)
     }
 
     override fun getItemCount() = dataSet.size

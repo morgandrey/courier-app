@@ -64,9 +64,17 @@
         android:label="Settings" />
     <fragment
         android:id="@+id/activeOrderListFragment"
-        android:name="com.example.courierapp.ui.ActiveOrdersFragment"
+        android:name="com.example.courierapp.ui.ActiveOrderListFragment"
         android:label="Active"
-        tools:layout="@layout/fragment_active_orders" />
+        tools:layout="@layout/fragment_active_order_list" >
+        <action
+            android:id="@+id/action_activeOrderListFragment_to_activeOrderDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/activeOrderDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/availableOrderListFragment"
         android:name="com.example.courierapp.ui.AvailableOrderListFragment"
@@ -108,4 +116,8 @@
         android:id="@+id/availableOrderDetailsFragment"
         android:name="com.example.courierapp.ui.AvailableOrderDetailsFragment"
         android:label="Order details"/>
+    <fragment
+        android:id="@+id/activeOrderDetailsFragment"
+        android:name="com.example.courierapp.ui.ActiveOrderDetailsFragment"
+        android:label="Order details" />
 </navigation>

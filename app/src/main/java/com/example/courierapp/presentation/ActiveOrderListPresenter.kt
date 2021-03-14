@@ -1,0 +1,52 @@
+package com.example.courierapp.presentation
+
+import com.example.courierapp.R
+import com.example.courierapp.models.Order
+import com.example.courierapp.remote.NetworkService
+import com.example.courierapp.remote.OrderService
+import com.example.courierapp.views.ActiveOrderListView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import moxy.MvpPresenter
+import retrofit2.HttpException
+
+
+/**
+ * Created by Andrey Morgunov on 14/03/2021.
+ */
+
+class ActiveOrderListPresenter : MvpPresenter<ActiveOrderListView>() {
+
+    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    private lateinit var orderService: OrderService
+
+    fun getActiveOrders(courierId: Long) {
+        viewState.switchLoading(true)
+        orderService = NetworkService.orderService
+        compositeDisposable.add(
+            orderService.getActiveOrders(courierId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { orderList ->
+                        viewState.switchLoading(false)
+                        viewState.onSuccessGetActiveOrders(orderList)
+                    },
+                    { error ->
+                        viewState.switchLoading(false)
+                        if (error is HttpException) {
+                            val responseBody = error.response()?.errorBody()
+                            viewState.showError(message = responseBody?.string().orEmpty())
+                        } else {
+                            viewState.showError(R.string.loading_orders_error)
+                        }
+                    }
+                )
+        )
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.clear()
+    }
+}
