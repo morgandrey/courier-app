@@ -12,12 +12,14 @@
     <string name="registration_passwords_mismatch">The password and confirm password fields do not match</string>
     <string name="registration_sign_up_button">Sign up</string>
 
-    <!-- Courier -->
+    <!-- Courier profile -->
     <string name="surname">Surname</string>
     <string name="phone">Phone</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="name">Name</string>
+    <string name="profile_update_error">Profile update error</string>
+    <string name="profile_get_courier_error">Profile get courier error</string>
 
     <!-- Sign in -->
     <string name="sign_in_button">Sign in</string>
@@ -43,12 +45,22 @@
 
     <!-- Order -->
     <string name="order_item_id">Order № %s</string>
-    <string name="order_details">Order details № %s</string>
     <string name="courier_reward_text">Reward: %s</string>
     <string name="rating_text">Rating: %s</string>
+    <string name="loading_orders_error">Loading orders error</string>
 
+    <!-- Order details -->
+    <string name="order_details_title">Order details №%s</string>
+    <string name="order_details_client_text">Client: %s %s</string>
+    <string name="order_details_products_text">Products:</string>
+    <string name="order_details_address_text">Address: %s</string>
+    <string name="order_details_take_order_button_text">Take Order</string>
+    <string name="order_details_description_text">Description:</string>
+
+    <!-- Dialog -->
     <string name="dialog_confirmation_title">The confirmation</string>
     <string name="dialog_logout_message">Are you sure you want to reset the access PIN code and log in with your phone number?</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_ok" translatable="false">OK</string>
+
 </resources>

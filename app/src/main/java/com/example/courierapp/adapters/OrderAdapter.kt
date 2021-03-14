@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courierapp.R
 import com.example.courierapp.models.Order
+import com.google.gson.Gson
 
 
 /**
@@ -26,7 +29,8 @@ class OrderAdapter(private var dataSet: List<Order>) :
         private val orderAddress: TextView = itemView.findViewById(R.id.order_location_text_view)
         private val orderRating: TextView = itemView.findViewById(R.id.rating_text_view)
         private val courierReward: TextView = itemView.findViewById(R.id.order_reward_text_view)
-        private val locationButton: ImageButton = itemView.findViewById(R.id.find_order_location_button)
+        private val locationButton: ImageButton =
+            itemView.findViewById(R.id.find_order_location_button)
 
         fun bind(item: Order) {
             orderId.text =
@@ -40,9 +44,13 @@ class OrderAdapter(private var dataSet: List<Order>) :
                     item.CourierReward.toString()
                 )
             itemView.setOnClickListener { view ->
-//                val bundle = Bundle()
-//                bundle.putSerializable("order", item)
-                // Переход
+                val gson = Gson()
+                val orderJson = gson.toJson(item)
+                val bundle = bundleOf("order" to orderJson)
+                view.findNavController().navigate(
+                    R.id.action_availableOrderListFragment_to_availableOrderDetailsFragment,
+                    bundle
+                )
             }
 
             locationButton.setOnClickListener {

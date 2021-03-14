@@ -14,4 +14,8 @@ data class Product(
     var ProductDescription: String = "",
     @SerializedName("ProductCost")
     var ProductCost: Double = 0.0
-)
+) {
+    override fun toString(): String {
+        return "$ProductName, $ProductCost"
+    }
+}

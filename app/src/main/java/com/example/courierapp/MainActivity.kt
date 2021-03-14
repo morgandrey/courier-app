@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.additionalFragment,
                 R.id.historyFragment,
-                R.id.availableOrdersFragment,
-                R.id.activeOrdersFragment,
+                R.id.availableOrderListFragment,
+                R.id.activeOrderListFragment,
                 R.id.pinLockFragment,
                 R.id.signInFragment
             )
@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.signInFragment ||
                 destination.id == R.id.registerFragment ||
                 destination.id == R.id.settingsFragment ||
-                destination.id == R.id.profileFragment
+                destination.id == R.id.profileFragment ||
+                destination.id == R.id.availableOrderDetailsFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
@@ -83,11 +84,11 @@ class MainActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_available_orders -> {
-                    navController.navigate(R.id.availableOrdersFragment)
+                    navController.navigate(R.id.availableOrderListFragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_active_orders -> {
-                    navController.navigate(R.id.activeOrdersFragment)
+                    navController.navigate(R.id.activeOrderListFragment)
                     return@OnNavigationItemSelectedListener true
                 }
             }

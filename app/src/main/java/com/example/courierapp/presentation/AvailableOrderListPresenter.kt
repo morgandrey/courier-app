@@ -1,10 +1,9 @@
 package com.example.courierapp.presentation
 
 import com.example.courierapp.R
-import com.example.courierapp.models.Courier
 import com.example.courierapp.remote.NetworkService
 import com.example.courierapp.remote.OrderService
-import com.example.courierapp.views.AvailableOrdersView
+import com.example.courierapp.views.AvailableOrderListView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +15,7 @@ import retrofit2.HttpException
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class AvailableOrdersPresenter : MvpPresenter<AvailableOrdersView>() {
+class AvailableOrderListPresenter : MvpPresenter<AvailableOrderListView>() {
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private lateinit var orderService: OrderService
@@ -39,7 +38,7 @@ class AvailableOrdersPresenter : MvpPresenter<AvailableOrdersView>() {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())
                         } else {
-                            viewState.showError(R.string.registration_error)
+                            viewState.showError(R.string.loading_orders_error)
                         }
                     }
                 )

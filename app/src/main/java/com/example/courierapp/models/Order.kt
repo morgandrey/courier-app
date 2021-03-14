@@ -11,7 +11,7 @@ data class Order(
     @SerializedName("OrderId")
     var OrderId: Long = 0,
     @SerializedName("CourierId")
-    var CourierId: Long = 0,
+    var CourierId: Long? = null,
     @SerializedName("ClientName")
     var ClientName: String = "",
     @SerializedName("ClientSurname")

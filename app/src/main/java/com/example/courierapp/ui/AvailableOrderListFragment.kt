@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.R
 import com.example.courierapp.adapters.OrderAdapter
-import com.example.courierapp.databinding.FragmentAvailableOrdersBinding
+import com.example.courierapp.databinding.FragmentAvailableOrderListBinding
 import com.example.courierapp.models.Courier
 import com.example.courierapp.models.Order
-import com.example.courierapp.presentation.AvailableOrdersPresenter
+import com.example.courierapp.presentation.AvailableOrderListPresenter
 import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.hideApp
 import com.example.courierapp.util.showToast
-import com.example.courierapp.views.AvailableOrdersView
+import com.example.courierapp.views.AvailableOrderListView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -24,10 +24,10 @@ import moxy.ktx.moxyPresenter
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class AvailableOrdersFragment : MvpAppCompatFragment(R.layout.fragment_available_orders), AvailableOrdersView {
+class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_available_order_list), AvailableOrderListView {
 
-    private val presenter: AvailableOrdersPresenter by moxyPresenter { AvailableOrdersPresenter() }
-    private val binding: FragmentAvailableOrdersBinding by viewBinding()
+    private val presenter: AvailableOrderListPresenter by moxyPresenter { AvailableOrderListPresenter() }
+    private val binding: FragmentAvailableOrderListBinding by viewBinding()
     private lateinit var courier: Courier
     private lateinit var preferencesManager: PreferencesManager
 
@@ -35,7 +35,7 @@ class AvailableOrdersFragment : MvpAppCompatFragment(R.layout.fragment_available
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_available_orders, container, false)
+        return inflater.inflate(R.layout.fragment_available_order_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

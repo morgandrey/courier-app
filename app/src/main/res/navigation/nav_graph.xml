@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_pin_lock">
         <action
             android:id="@+id/action_pinLockFragment_to_activeOrdersFragment"
-            app:destination="@id/activeOrdersFragment" />
+            app:destination="@id/activeOrderListFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -63,15 +63,23 @@
         android:name="com.example.courierapp.ui.SettingsFragment"
         android:label="Settings" />
     <fragment
-        android:id="@+id/activeOrdersFragment"
+        android:id="@+id/activeOrderListFragment"
         android:name="com.example.courierapp.ui.ActiveOrdersFragment"
         android:label="Active"
         tools:layout="@layout/fragment_active_orders" />
     <fragment
-        android:id="@+id/availableOrdersFragment"
-        android:name="com.example.courierapp.ui.AvailableOrdersFragment"
+        android:id="@+id/availableOrderListFragment"
+        android:name="com.example.courierapp.ui.AvailableOrderListFragment"
         android:label="Available"
-        tools:layout="@layout/fragment_available_orders" />
+        tools:layout="@layout/fragment_available_order_list" >
+        <action
+            android:id="@+id/action_availableOrderListFragment_to_availableOrderDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/availableOrderDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/additionalFragment"
         android:name="com.example.courierapp.ui.AdditionalFragment"
@@ -96,4 +104,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/availableOrderDetailsFragment"
+        android:name="com.example.courierapp.ui.AvailableOrderDetailsFragment"
+        android:label="Order details"/>
 </navigation>

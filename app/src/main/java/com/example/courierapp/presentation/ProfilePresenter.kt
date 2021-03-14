@@ -34,7 +34,7 @@ class ProfilePresenter : MvpPresenter<ProfileView>() {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())
                         } else {
-                            viewState.showError(R.string.registration_error)
+                            viewState.showError(R.string.profile_update_error)
                         }
                     }
                 )
@@ -59,7 +59,7 @@ class ProfilePresenter : MvpPresenter<ProfileView>() {
                             val responseBody = error.response()?.errorBody()
                             viewState.showError(message = responseBody?.string().orEmpty())
                         } else {
-                            viewState.showError(R.string.registration_error)
+                            viewState.showError(R.string.profile_get_courier_error)
                         }
                     }
                 )

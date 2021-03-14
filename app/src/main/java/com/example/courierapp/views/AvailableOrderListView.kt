@@ -10,7 +10,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
  */
 
 @AddToEndSingle
-interface AvailableOrdersView : MvpView {
+interface AvailableOrderListView : MvpView {
     fun onSuccessGetAvailableOrders(orderList: List<Order>)
     fun switchLoading(show: Boolean)
     fun showError(message: String)
