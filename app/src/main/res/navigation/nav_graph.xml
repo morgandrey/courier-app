@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.courierapp.ui.SignInFragment"
-        android:label="Sign in"
+        android:label="@string/sign_in_button"
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_registerFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.courierapp.ui.RegisterFragment"
-        android:label="Register"
+        android:label="@string/registration_sign_up_button"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/pinLockFragment"
@@ -43,12 +43,12 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.courierapp.ui.HistoryFragment"
-        android:label="History"
+        android:label="@string/history_title"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.courierapp.ui.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/profile_title"
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_signInFragment"
@@ -61,42 +61,42 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.courierapp.ui.SettingsFragment"
-        android:label="Settings" />
+        android:label="@string/settings_title" />
     <fragment
         android:id="@+id/activeOrderListFragment"
         android:name="com.example.courierapp.ui.ActiveOrderListFragment"
-        android:label="Active"
-        tools:layout="@layout/fragment_active_order_list" >
+        android:label="@string/active_order_list_title"
+        tools:layout="@layout/fragment_active_order_list">
         <action
             android:id="@+id/action_activeOrderListFragment_to_activeOrderDetailsFragment"
+            app:destination="@id/activeOrderDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:destination="@id/activeOrderDetailsFragment" />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/availableOrderListFragment"
         android:name="com.example.courierapp.ui.AvailableOrderListFragment"
-        android:label="Available"
-        tools:layout="@layout/fragment_available_order_list" >
+        android:label="@string/available_order_list_title"
+        tools:layout="@layout/fragment_available_order_list">
         <action
             android:id="@+id/action_availableOrderListFragment_to_availableOrderDetailsFragment"
+            app:destination="@id/availableOrderDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:destination="@id/availableOrderDetailsFragment" />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/additionalFragment"
         android:name="com.example.courierapp.ui.AdditionalFragment"
-        android:label="More"
+        android:label="@string/additional_title"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"
-        tools:layout="@layout/fragment_additional" >
+        tools:layout="@layout/fragment_additional">
         <action
             android:id="@+id/action_additionalFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
@@ -115,9 +115,9 @@
     <fragment
         android:id="@+id/availableOrderDetailsFragment"
         android:name="com.example.courierapp.ui.AvailableOrderDetailsFragment"
-        android:label="Order details"/>
+        android:label="@string/order_details_title" />
     <fragment
         android:id="@+id/activeOrderDetailsFragment"
         android:name="com.example.courierapp.ui.ActiveOrderDetailsFragment"
-        android:label="Order details" />
+        android:label="@string/order_details_title" />
 </navigation>

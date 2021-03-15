@@ -32,7 +32,7 @@
     <string name="courier_reward_text">Награда: %s</string>
     <string name="rating_text">Рейтинг: %s</string>
     <string name="loading_orders_error">Ошибка загрузки заказов</string>
-    <string name="order_details_title">Детали заказа № %s</string>
+    <string name="order_details_title">Детали заказа</string>
     <string name="order_details_client_text">Клиент: %s %s</string>
     <string name="order_details_products_text">"Продукты: "</string>
     <string name="order_details_address_text">Адрес: %s</string>
@@ -43,4 +43,12 @@
     <string name="dialog_cancel">Отмена</string>
     <string name="complete_order_button_text">Завершить</string>
     <string name="cancel_order_button_text">Отказаться</string>
+    <string name="profile_title">Профиль</string>
+    <string name="additional_title">Ещё</string>
+    <string name="settings_title">Настройки</string>
+    <string name="active_order_list_title">Активные</string>
+    <string name="history_title">История</string>
+    <string name="available_order_list_title">Доступные</string>
+    <string name="complete_order_error">Ошибка заверешния заказа</string>
+    <string name="complete_order_success">Вы завершили заказ!</string>
 </resources>

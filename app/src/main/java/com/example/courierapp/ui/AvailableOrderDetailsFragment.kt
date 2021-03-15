@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.courierapp.MyApplication
 import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentAvailableOrderDetailsBinding
 import com.example.courierapp.models.Order
@@ -17,6 +18,7 @@ import com.example.courierapp.views.AvailableOrderDetailsView
 import com.google.gson.Gson
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 
 /**
@@ -29,7 +31,9 @@ class AvailableOrderDetailsFragment :
 
     private val presenter: AvailableOrderDetailsPresenter by moxyPresenter { AvailableOrderDetailsPresenter() }
     private val binding: FragmentAvailableOrderDetailsBinding by viewBinding()
-    private lateinit var preferencesManager: PreferencesManager
+
+    @Inject
+    lateinit var preferencesManager: PreferencesManager
     private lateinit var order: Order
 
     override fun onCreateView(
@@ -42,7 +46,7 @@ class AvailableOrderDetailsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         order = Gson().fromJson(requireArguments().getString("order"), Order::class.java)
-        preferencesManager = PreferencesManager(requireContext())
+        (requireActivity().application as MyApplication).appComponent.inject(this)
         binding.takeOrderButton.setOnClickListener {
             order.CourierId = preferencesManager.getCourier()!!.CourierId
             presenter.takeOrder(order)

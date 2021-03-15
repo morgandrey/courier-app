@@ -13,6 +13,8 @@
     <string name="registration_sign_up_button">Sign up</string>
 
     <!-- Courier profile -->
+    <string name="profile_title">Profile</string>
+    <string name="additional_title">More</string>
     <string name="surname">Surname</string>
     <string name="phone">Phone</string>
     <string name="password">Password</string>
@@ -35,6 +37,7 @@
     <string name="wrong_pin_code">Wrong pin code</string>
 
     <!-- Settings -->
+    <string name="settings_title">Settings</string>
     <string name="language_title">Language</string>
     <string name="russian_language">Russian</string>
     <string name="english_language">English</string>
@@ -50,7 +53,7 @@
     <string name="loading_orders_error">Loading orders error</string>
 
     <!-- Order details -->
-    <string name="order_details_title">Order details № %s</string>
+    <string name="order_details_title">Order details</string>
     <string name="order_details_client_text">Client: %s %s</string>
     <string name="order_details_products_text">Products:</string>
     <string name="order_details_address_text">Address: %s</string>
@@ -64,8 +67,13 @@
     <string name="dialog_ok" translatable="false">OK</string>
 
     <!-- Active orders -->
+    <string name="active_order_list_title">Active</string>
     <string name="complete_order_button_text">Complete</string>
     <string name="cancel_order_button_text">Cancel</string>
+
+    <string name="available_order_list_title">Available</string>
+    <string name="history_title">History</string>
+
 
     <string name="complete_order_error">Complete order error</string>
     <string name="complete_order_success">You are complete the order!</string>

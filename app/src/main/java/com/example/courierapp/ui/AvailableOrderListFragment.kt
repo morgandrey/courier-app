@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.courierapp.MyApplication
 import com.example.courierapp.R
 import com.example.courierapp.adapters.OrderAdapter
 import com.example.courierapp.databinding.FragmentAvailableOrderListBinding
@@ -18,6 +19,7 @@ import com.example.courierapp.util.showToast
 import com.example.courierapp.views.AvailableOrderListView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 
 /**
@@ -28,7 +30,9 @@ class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_availa
 
     private val presenter: AvailableOrderListPresenter by moxyPresenter { AvailableOrderListPresenter() }
     private val binding: FragmentAvailableOrderListBinding by viewBinding()
-    private lateinit var preferencesManager: PreferencesManager
+
+    @Inject
+    lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +44,7 @@ class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_availa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideApp(requireActivity(), viewLifecycleOwner)
-        preferencesManager = PreferencesManager(requireContext())
+        (requireActivity().application as MyApplication).appComponent.inject(this)
         presenter.getAvailableOrders(preferencesManager.getCourier()!!.CourierId)
     }
 

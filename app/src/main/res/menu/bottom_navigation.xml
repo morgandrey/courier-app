@@ -5,23 +5,23 @@
         android:id="@+id/navigation_available_orders"
         android:enabled="true"
         android:icon="@drawable/ic_available_orders_24"
-        android:title="Available" />
+        android:title="@string/available_order_list_title" />
 
     <item
         android:id="@+id/navigation_active_orders"
         android:enabled="true"
         android:icon="@drawable/ic_active_orders_24"
-        android:title="Active" />
+        android:title="@string/active_order_list_title" />
 
     <item
         android:id="@+id/navigation_history_orders"
         android:enabled="true"
         android:icon="@drawable/ic_order_history_24"
-        android:title="History" />
+        android:title="@string/history_title" />
 
     <item
         android:id="@+id/navigation_additional"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="More" />
+        android:title="@string/additional_title" />
 </menu>

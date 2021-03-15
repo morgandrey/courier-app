@@ -7,7 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.preference.PreferenceManager
 import com.example.courierapp.databinding.ActivityMainBinding
+import com.example.courierapp.util.LocalHelper
 import com.example.courierapp.util.PreferencesManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
@@ -32,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_SELECTED
         binding.bottomNav.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         setSupportActionBar(binding.toolbar)
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val lang = sp.getString("language_reply", "")
+        LocalHelper.setLocale(this, lang!!)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(

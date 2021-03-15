@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
+import com.example.courierapp.MyApplication
 import com.example.courierapp.R
 import com.example.courierapp.databinding.FragmentProfileBinding
 import com.example.courierapp.models.Courier
@@ -26,6 +27,7 @@ import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import java.io.ByteArrayOutputStream
+import javax.inject.Inject
 
 
 /**
@@ -37,7 +39,9 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
     private val presenter: ProfilePresenter by moxyPresenter { ProfilePresenter() }
     private val binding: FragmentProfileBinding by viewBinding()
     private lateinit var courier: Courier
-    private lateinit var preferencesManager: PreferencesManager
+
+    @Inject
+    lateinit var preferencesManager: PreferencesManager
     private lateinit var loadingDialog: AlertDialog
 
     override fun onCreateView(
@@ -50,7 +54,7 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = loadingSpotsDialog(requireContext())
-        preferencesManager = PreferencesManager(requireContext())
+        (requireActivity().application as MyApplication).appComponent.inject(this)
         courier = preferencesManager.getCourier()!!
         presenter.getCourier(courier.CourierId)
 

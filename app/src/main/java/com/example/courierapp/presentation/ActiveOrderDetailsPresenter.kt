@@ -5,7 +5,6 @@ import com.example.courierapp.models.Order
 import com.example.courierapp.remote.NetworkService
 import com.example.courierapp.remote.OrderService
 import com.example.courierapp.views.ActiveOrderDetailsView
-import com.example.courierapp.views.AvailableOrderDetailsView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
