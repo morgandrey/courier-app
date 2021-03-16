@@ -17,4 +17,6 @@ interface AppComponent {
     fun inject(target: AvailableOrderDetailsFragment)
     fun inject(target: ActiveOrderDetailsFragment)
     fun inject(target: ProfileFragment)
+    fun inject(target: HistoryOrderDetailsFragment)
+    fun inject(target: HistoryOrderListFragment)
 }

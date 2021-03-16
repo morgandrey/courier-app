@@ -10,7 +10,7 @@ import com.example.courierapp.MyApplication
 import com.example.courierapp.R
 import com.example.courierapp.adapters.AdapterType
 import com.example.courierapp.adapters.OrderAdapter
-import com.example.courierapp.databinding.FragmentActiveOrderListBinding
+import com.example.courierapp.databinding.FragmentHistoryOrderListBinding
 import com.example.courierapp.models.Order
 import com.example.courierapp.presentation.OrderListPresenter
 import com.example.courierapp.util.PreferencesManager
@@ -23,14 +23,14 @@ import javax.inject.Inject
 
 
 /**
- * Created by Andrey Morgunov on 13/03/2021.
+ * Created by Andrey Morgunov on 12/03/2021.
  */
 
-class ActiveOrderListFragment : MvpAppCompatFragment(R.layout.fragment_active_order_list),
+class HistoryOrderListFragment : MvpAppCompatFragment(R.layout.fragment_history_order_list),
     OrderListView {
 
     private val presenter: OrderListPresenter by moxyPresenter { OrderListPresenter() }
-    private val binding: FragmentActiveOrderListBinding by viewBinding()
+    private val binding: FragmentHistoryOrderListBinding by viewBinding()
 
     @Inject
     lateinit var preferencesManager: PreferencesManager
@@ -39,32 +39,32 @@ class ActiveOrderListFragment : MvpAppCompatFragment(R.layout.fragment_active_or
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_active_order_list, container, false)
+        return inflater.inflate(R.layout.fragment_history_order_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideApp(requireActivity(), viewLifecycleOwner)
         (requireActivity().application as MyApplication).appComponent.inject(this)
-        presenter.getActiveOrders(preferencesManager.getCourier()!!.CourierId)
+        presenter.getHistoryOrders(preferencesManager.getCourier()!!.CourierId)
+    }
+
+    override fun onSuccessGetOrders(orderList: List<Order>) {
+        binding.historyOrdersRecyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.historyOrdersRecyclerView.adapter = OrderAdapter(orderList, AdapterType.History)
     }
 
     override fun switchLoading(show: Boolean) {
         when (show) {
             true -> {
-                binding.activeOrdersProgressBar.visibility = View.VISIBLE
-                binding.activeOrdersRecyclerView.visibility = View.GONE
+                binding.historyProgressBar.visibility = View.VISIBLE
+                binding.historyOrdersRecyclerView.visibility = View.GONE
             }
             false -> {
-                binding.activeOrdersProgressBar.visibility = View.GONE
-                binding.activeOrdersRecyclerView.visibility = View.VISIBLE
+                binding.historyProgressBar.visibility = View.GONE
+                binding.historyOrdersRecyclerView.visibility = View.VISIBLE
             }
         }
-    }
-
-    override fun onSuccessGetOrders(orderList: List<Order>) {
-        binding.activeOrdersRecyclerView.layoutManager = LinearLayoutManager(activity)
-        binding.activeOrdersRecyclerView.adapter = OrderAdapter(orderList, AdapterType.Active)
     }
 
     override fun showError(message: String) {

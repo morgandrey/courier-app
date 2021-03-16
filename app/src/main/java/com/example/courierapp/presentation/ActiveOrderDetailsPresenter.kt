@@ -4,7 +4,7 @@ import com.example.courierapp.R
 import com.example.courierapp.models.Order
 import com.example.courierapp.remote.NetworkService
 import com.example.courierapp.remote.OrderService
-import com.example.courierapp.views.ActiveOrderDetailsView
+import com.example.courierapp.views.OrderDetailsView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -13,10 +13,10 @@ import retrofit2.HttpException
 
 
 /**
- * Created by Andrey Morgunov on 14/03/2021.
+ * Created by Andrey Morgunov on 16/03/2021.
  */
 
-class ActiveOrderDetailsPresenter : MvpPresenter<ActiveOrderDetailsView>() {
+class ActiveOrderDetailsPresenter : MvpPresenter<OrderDetailsView.Active>() {
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private lateinit var orderService: OrderService

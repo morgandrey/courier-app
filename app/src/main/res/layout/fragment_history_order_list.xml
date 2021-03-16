@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="History details" />
+        android:text="Analysis" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_orders_recycler_view"

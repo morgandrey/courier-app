@@ -42,9 +42,17 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.courierapp.ui.HistoryFragment"
+        android:name="com.example.courierapp.ui.HistoryOrderListFragment"
         android:label="@string/history_title"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history_order_list" >
+        <action
+            android:id="@+id/action_historyFragment_to_historyOrderDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/historyOrderDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.courierapp.ui.ProfileFragment"
@@ -119,5 +127,9 @@
     <fragment
         android:id="@+id/activeOrderDetailsFragment"
         android:name="com.example.courierapp.ui.ActiveOrderDetailsFragment"
+        android:label="@string/order_details_title" />
+    <fragment
+        android:id="@+id/historyOrderDetailsFragment"
+        android:name="com.example.courierapp.ui.HistoryOrderDetailsFragment"
         android:label="@string/order_details_title" />
 </navigation>

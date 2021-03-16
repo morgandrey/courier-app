@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.MyApplication
 import com.example.courierapp.R
+import com.example.courierapp.adapters.AdapterType
 import com.example.courierapp.adapters.OrderAdapter
 import com.example.courierapp.databinding.FragmentAvailableOrderListBinding
-import com.example.courierapp.models.Courier
 import com.example.courierapp.models.Order
-import com.example.courierapp.presentation.AvailableOrderListPresenter
+import com.example.courierapp.presentation.OrderListPresenter
 import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.hideApp
 import com.example.courierapp.util.showToast
-import com.example.courierapp.views.AvailableOrderListView
+import com.example.courierapp.views.OrderListView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -26,9 +26,9 @@ import javax.inject.Inject
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_available_order_list), AvailableOrderListView {
+class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_available_order_list), OrderListView {
 
-    private val presenter: AvailableOrderListPresenter by moxyPresenter { AvailableOrderListPresenter() }
+    private val presenter: OrderListPresenter by moxyPresenter { OrderListPresenter() }
     private val binding: FragmentAvailableOrderListBinding by viewBinding()
 
     @Inject
@@ -48,9 +48,9 @@ class AvailableOrderListFragment : MvpAppCompatFragment(R.layout.fragment_availa
         presenter.getAvailableOrders(preferencesManager.getCourier()!!.CourierId)
     }
 
-    override fun onSuccessGetAvailableOrders(orderList: List<Order>) {
+    override fun onSuccessGetOrders(orderList: List<Order>) {
         binding.orderRecyclerView.layoutManager = LinearLayoutManager(activity)
-        binding.orderRecyclerView.adapter = OrderAdapter(orderList, false)
+        binding.orderRecyclerView.adapter = OrderAdapter(orderList, AdapterType.Available)
     }
 
     override fun switchLoading(show: Boolean) {

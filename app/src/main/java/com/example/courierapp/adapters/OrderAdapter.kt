@@ -20,7 +20,7 @@ import com.google.gson.Gson
  * Created by Andrey Morgunov on 13/03/2021.
  */
 
-class OrderAdapter(private var dataSet: List<Order>, private val active: Boolean) :
+class OrderAdapter(private var dataSet: List<Order>, private val adapterType: AdapterType) :
     RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +31,7 @@ class OrderAdapter(private var dataSet: List<Order>, private val active: Boolean
         private val locationButton: ImageButton =
             itemView.findViewById(R.id.find_order_location_button)
 
-        fun bind(item: Order, active: Boolean) {
+        fun bind(item: Order, adapterType: AdapterType) {
             orderId.text =
                 itemView.resources.getString(R.string.order_item_id, item.OrderId.toString())
             orderAddress.text = item.DeliveryAddress
@@ -46,26 +46,40 @@ class OrderAdapter(private var dataSet: List<Order>, private val active: Boolean
             val gson = Gson()
             val orderJson = gson.toJson(item)
             val bundle = bundleOf("order" to orderJson)
-            if (active) {
-                itemView.setOnClickListener { view ->
-                    view.findNavController().navigate(
-                        R.id.action_activeOrderListFragment_to_activeOrderDetailsFragment,
-                        bundle
-                    )
-                }
-            } else {
-                itemView.setOnClickListener { view ->
-                    view.findNavController().navigate(
-                        R.id.action_availableOrderListFragment_to_availableOrderDetailsFragment,
-                        bundle
-                    )
-                }
-            }
+
             locationButton.setOnClickListener {
                 val gmmIntentUri = Uri.parse("geo:0,0?q=${item.DeliveryAddress}, Москва")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 mapIntent.setPackage("com.google.android.apps.maps")
                 ContextCompat.startActivity(itemView.context, mapIntent, null)
+            }
+
+            when (adapterType) {
+                AdapterType.Available -> {
+                    itemView.setOnClickListener { view ->
+                        view.findNavController().navigate(
+                            R.id.action_availableOrderListFragment_to_availableOrderDetailsFragment,
+                            bundle
+                        )
+                    }
+                }
+                AdapterType.Active -> {
+                    itemView.setOnClickListener { view ->
+                        view.findNavController().navigate(
+                            R.id.action_activeOrderListFragment_to_activeOrderDetailsFragment,
+                            bundle
+                        )
+                    }
+                }
+                AdapterType.History -> {
+                    itemView.setOnClickListener { view ->
+                        view.findNavController().navigate(
+                            R.id.action_historyFragment_to_historyOrderDetailsFragment,
+                            bundle
+                        )
+                    }
+                    locationButton.visibility = View.GONE
+                }
             }
         }
 
@@ -86,7 +100,7 @@ class OrderAdapter(private var dataSet: List<Order>, private val active: Boolean
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = dataSet[position]
-        viewHolder.bind(item, active)
+        viewHolder.bind(item, adapterType)
     }
 
     override fun getItemCount() = dataSet.size

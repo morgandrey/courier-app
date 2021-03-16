@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.settingsFragment ||
                 destination.id == R.id.profileFragment ||
                 destination.id == R.id.availableOrderDetailsFragment ||
-                destination.id == R.id.activeOrderDetailsFragment
+                destination.id == R.id.activeOrderDetailsFragment ||
+                destination.id == R.id.historyOrderDetailsFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
@@ -75,8 +76,7 @@ class MainActivity : AppCompatActivity() {
         val courier = preferencesManager.getCourier()
         return courier != null
     }
-
-
+    
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp()
 
     private val onNavigationItemSelectedListener =

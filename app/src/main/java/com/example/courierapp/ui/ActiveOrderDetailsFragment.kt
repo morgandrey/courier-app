@@ -13,7 +13,7 @@ import com.example.courierapp.models.Order
 import com.example.courierapp.presentation.ActiveOrderDetailsPresenter
 import com.example.courierapp.util.PreferencesManager
 import com.example.courierapp.util.showToast
-import com.example.courierapp.views.ActiveOrderDetailsView
+import com.example.courierapp.views.OrderDetailsView
 import com.google.gson.Gson
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 class ActiveOrderDetailsFragment :
     MvpAppCompatFragment(R.layout.fragment_active_order_details),
-    ActiveOrderDetailsView {
+    OrderDetailsView.Active {
 
     private val presenter: ActiveOrderDetailsPresenter by moxyPresenter { ActiveOrderDetailsPresenter() }
     private val binding: FragmentActiveOrderDetailsBinding by viewBinding()
