@@ -77,5 +77,7 @@
 
     <string name="complete_order_error">Complete order error</string>
     <string name="complete_order_success">You are complete the order!</string>
+    <string name="orders_completed_for_all_time">Orders completed for all time: %s</string>
+    <string name="earned_for_all_time">Earned for all time: %s</string>
 
 </resources>

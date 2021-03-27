@@ -23,7 +23,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     editor.apply()
                     LocalHelper.setLocale(requireActivity(), lang!!)
                     val intent = Intent(activity, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)

@@ -52,6 +52,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/historyOrderDetailsFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_analysisFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/analysisFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -132,4 +139,8 @@
         android:id="@+id/historyOrderDetailsFragment"
         android:name="com.example.courierapp.ui.HistoryOrderDetailsFragment"
         android:label="@string/order_details_title" />
+    <fragment
+        android:id="@+id/analysisFragment"
+        android:name="com.example.courierapp.ui.AnalysisFragment"
+        android:label="AnalysisFragment" />
 </navigation>

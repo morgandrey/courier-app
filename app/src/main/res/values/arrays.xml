@@ -5,7 +5,7 @@
     </string-array>
 
     <string-array name="reply_values">
-        <item>EN</item>
-        <item>RU</item>
+        <item>en</item>
+        <item>ru</item>
     </string-array>
 </resources>

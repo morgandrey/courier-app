@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_CourierApp)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         preferencesManager = PreferencesManager(applicationContext)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -34,10 +33,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_SELECTED
         binding.bottomNav.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         setSupportActionBar(binding.toolbar)
-
-        val sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        val lang = sp.getString("language_reply", "")
-        LocalHelper.setLocale(this, lang!!)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -51,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         )
         binding.bottomNav.menu.getItem(1).isChecked = true
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val lang = sp.getString("language_reply", "")
+        LocalHelper.setLocale(this, lang!!)
+
         if (isCourierLoggedIn()) {
             navController.navigate(R.id.pinLockFragment)
         }
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.profileFragment ||
                 destination.id == R.id.availableOrderDetailsFragment ||
                 destination.id == R.id.activeOrderDetailsFragment ||
-                destination.id == R.id.historyOrderDetailsFragment
+                destination.id == R.id.historyOrderDetailsFragment ||
+                destination.id == R.id.analysisFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {
