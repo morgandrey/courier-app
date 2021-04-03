@@ -85,6 +85,9 @@ dependencies {
     // Graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // Telegram Bot
+    implementation 'io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.4'
+
     // Moxy
     implementation 'com.github.moxy-community:moxy-androidx:2.2.1'
     implementation 'com.github.moxy-community:moxy-ktx:2.2.1'

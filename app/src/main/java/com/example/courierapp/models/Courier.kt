@@ -8,12 +8,14 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Courier(
-    @SerializedName("courierId")
+    @SerializedName("idCourier")
     var CourierId: Long = 0,
     @SerializedName("courierName")
     var CourierName: String = "",
     @SerializedName("courierSurname")
     var CourierSurname: String = "",
+    @SerializedName("courierPatronymic")
+    var CourierPatronymic: String = "",
     @SerializedName("courierImage")
     var CourierImage: String? = null,
     @SerializedName("courierPhone")
@@ -23,7 +25,9 @@ data class Courier(
     @SerializedName("courierSalt")
     var CourierSalt: String = "",
     @SerializedName("courierRating")
-    var CourierRating: Long = 0,
+    var CourierRating: Double = 0.0,
+    @SerializedName("courierRatingCount")
+    var CourierRatingCount: Int = 0,
     @SerializedName("courierMoney")
     var CourierMoney: Double = 0.0
 )

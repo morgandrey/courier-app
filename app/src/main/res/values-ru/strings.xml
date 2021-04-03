@@ -30,7 +30,7 @@
     <string name="loading">Загрузка…</string>
     <string name="order_item_id">Заказ № %s</string>
     <string name="courier_reward_text">Награда: %s</string>
-    <string name="rating_text">Рейтинг: %s</string>
+    <string name="rating_text">Рейтинг: %s / 5.0</string>
     <string name="loading_orders_error">Ошибка загрузки заказов</string>
     <string name="order_details_title">Детали заказа</string>
     <string name="order_details_client_text">Клиент: %s %s</string>

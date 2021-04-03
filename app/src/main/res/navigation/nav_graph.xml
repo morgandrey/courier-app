@@ -134,7 +134,15 @@
     <fragment
         android:id="@+id/activeOrderDetailsFragment"
         android:name="com.example.courierapp.ui.ActiveOrderDetailsFragment"
-        android:label="@string/order_details_title" />
+        android:label="@string/order_details_title" >
+        <action
+            android:id="@+id/action_activeOrderDetailsFragment_to_chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyOrderDetailsFragment"
         android:name="com.example.courierapp.ui.HistoryOrderDetailsFragment"
@@ -143,4 +151,8 @@
         android:id="@+id/analysisFragment"
         android:name="com.example.courierapp.ui.AnalysisFragment"
         android:label="AnalysisFragment" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.courierapp.ui.ChatFragment"
+        android:label="Chat" />
 </navigation>

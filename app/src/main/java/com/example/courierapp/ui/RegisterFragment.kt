@@ -60,6 +60,7 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
                     Courier(
                         CourierName = binding.registerNameEditText.text.toString(),
                         CourierSurname = binding.registerSurnameEditText.text.toString(),
+                        CourierPatronymic = binding.registerPatronymicEditText.text.toString(),
                         CourierPhone = binding.registerPhoneEditText.text.toString(),
                         CourierPassword = binding.registerPasswordEditText.text.toString()
                     )
@@ -96,6 +97,7 @@ class RegisterFragment : MvpAppCompatFragment(R.layout.fragment_register), Regis
     private fun checkEmptyFields(): Boolean {
         return binding.registerNameEditText.text!!.isNotBlank() &&
                 binding.registerSurnameEditText.text!!.isNotBlank() &&
+                binding.registerPatronymicEditText.text!!.isNotBlank() &&
                 binding.registerPhoneEditText.text!!.isNotBlank() &&
                 binding.registerPasswordEditText.text!!.isNotBlank() &&
                 binding.registerConfirmPasswordEditText.text!!.isNotBlank()

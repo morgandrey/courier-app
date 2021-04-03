@@ -8,28 +8,30 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Order(
-    @SerializedName("OrderId")
+    @SerializedName("orderId")
     var OrderId: Long = 0,
-    @SerializedName("CourierId")
+    @SerializedName("courierId")
     var CourierId: Long? = null,
-    @SerializedName("ClientName")
+    @SerializedName("clientName")
     var ClientName: String = "",
-    @SerializedName("ClientSurname")
+    @SerializedName("clientSurname")
     var ClientSurname: String = "",
-    @SerializedName("ClientPhone")
+    @SerializedName("clientPatronymic")
+    var ClientPatronymic: String = "",
+    @SerializedName("clientPhone")
     var ClientPhone: String = "",
-    @SerializedName("DeliveryAddress")
+    @SerializedName("deliveryAddress")
     var DeliveryAddress: String = "",
-    @SerializedName("OrderDate")
+    @SerializedName("orderDate")
     var OrderDate: String = "",
-    @SerializedName("OrderDescription")
+    @SerializedName("orderDescription")
     var OrderDescription: String = "",
-    @SerializedName("OrderStatusId")
+    @SerializedName("orderStatusId")
     var OrderStatusId: Long = 0,
-    @SerializedName("OrderRating")
+    @SerializedName("orderRating")
     var OrderRating: Long = 0,
-    @SerializedName("CourierReward")
+    @SerializedName("courierReward")
     var CourierReward: Double = 0.0,
-    @SerializedName("Products")
+    @SerializedName("products")
     var Products: List<Product>? = null
 )

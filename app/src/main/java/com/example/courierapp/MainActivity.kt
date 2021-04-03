@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.availableOrderDetailsFragment ||
                 destination.id == R.id.activeOrderDetailsFragment ||
                 destination.id == R.id.historyOrderDetailsFragment ||
-                destination.id == R.id.analysisFragment
+                destination.id == R.id.analysisFragment ||
+                destination.id == R.id.chatFragment
             ) {
                 binding.bottomNav.visibility = View.GONE
             } else {

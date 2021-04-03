@@ -8,14 +8,14 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Product(
-    @SerializedName("ProductName")
+    @SerializedName("productName")
     var ProductName: String = "",
-    @SerializedName("ProductDescription")
+    @SerializedName("productDescription")
     var ProductDescription: String = "",
-    @SerializedName("ProductCost")
-    var ProductCost: Double = 0.0
+    @SerializedName("productPrice")
+    var ProductPrice: Double = 0.0
 ) {
     override fun toString(): String {
-        return "$ProductName, $ProductCost"
+        return "$ProductName, $ProductPrice"
     }
 }

@@ -11,14 +11,14 @@ import retrofit2.http.*
  */
 
 interface OrderService {
-    @GET("api/available-orders/{courierId}")
+    @GET("api/couriers/{courierId}/available-orders")
     fun getAvailableOrders(@Path("courierId") courierId: Long): Observable<List<Order>>
     @POST("api/order/take")
     fun takeOrder(@Body order: Order): Observable<Response<Unit>>
     @POST("api/order/complete")
     fun completeOrder(@Body order: Order): Observable<Response<Unit>>
-    @GET("api/courier/{courierId}/active-orders")
+    @GET("api/couriers/{courierId}/active-orders")
     fun getActiveOrders(@Path("courierId") courierId: Long): Observable<List<Order>>
-    @GET("api/courier/{courierId}/history-orders")
+    @GET("api/couriers/{courierId}/history-orders")
     fun getHistoryOrders(@Path("courierId") courierId: Long): Observable<List<Order>>
 }

@@ -128,12 +128,15 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
                 .load(Base64.decode(courier.CourierImage, Base64.DEFAULT))
                 .into(binding.courierImageView)
         }
-        binding.profileNameEditText.setText(courier.CourierName)
-        binding.profileSurnameEditText.setText(courier.CourierSurname)
-        binding.profilePhoneEditText.setText(courier.CourierPhone)
-        binding.profileRatingTextView.setText(courier.CourierRating.toString())
-        binding.profileMoneyTextView.setText(courier.CourierMoney.toString())
-
+        with(binding) {
+            profileNameEditText.setText(courier.CourierName)
+            profileSurnameEditText.setText(courier.CourierSurname)
+            profilePatronymicEditText.setText(courier.CourierPatronymic)
+            profilePhoneEditText.setText(courier.CourierPhone)
+            profileRatingTextView.text = getString(R.string.rating_text, courier.CourierRating.toString())
+            profileRatingCountTextView.text = getString(R.string.profile_rating_count_text, courier.CourierRatingCount.toString())
+            profileMoneyTextView.setText(courier.CourierMoney.toString())
+        }
         preferencesManager.setCourier(courier)
     }
 
@@ -148,6 +151,7 @@ class ProfileFragment : MvpAppCompatFragment(R.layout.fragment_profile), Profile
         with(courier) {
             CourierName = binding.profileNameEditText.text.toString()
             CourierSurname = binding.profileSurnameEditText.text.toString()
+            CourierPatronymic = binding.profilePatronymicEditText.text.toString()
             CourierPhone = binding.profilePhoneEditText.text.toString()
         }
         return courier

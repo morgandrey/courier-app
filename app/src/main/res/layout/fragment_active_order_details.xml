@@ -88,6 +88,14 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/open_chat_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Open chat"
+            android:textSize="18sp" />
+
+        <Button
             android:id="@+id/complete_order_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

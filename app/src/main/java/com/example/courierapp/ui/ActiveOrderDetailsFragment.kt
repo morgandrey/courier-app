@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.courierapp.MyApplication
@@ -49,6 +50,10 @@ class ActiveOrderDetailsFragment :
         binding.completeOrderButton.setOnClickListener {
             order.CourierId = preferencesManager.getCourier()!!.CourierId
             presenter.completeOrder(order)
+        }
+        binding.openChatButton.setOnClickListener {
+            val bundle = bundleOf("orderId" to order.OrderId)
+            findNavController().navigate(R.id.action_activeOrderDetailsFragment_to_chatFragment, bundle)
         }
         binding.cancelOrderButton.setOnClickListener {
 
